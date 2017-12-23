@@ -1,5 +1,7 @@
 package com.tito;
 
+import java.lang.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -129,8 +131,8 @@ public class Main {
       // use double for all the numbers
       // 1in = 2.54cm
 
-      System.out.println("you are " + calcFeetAndInchesToCentimeters(5, 11) + " cm tall");
-      System.out.println("you are " + calcFeetAndInchesToCentimeters(71) + " ft tall");
+//      System.out.println(calcFtAndInToCm(5, 11));
+      System.out.println(calcFtAndInToCm(71));
     }
 
     /* METHODS */
@@ -180,24 +182,33 @@ public class Main {
       System.out.println("no player name, no player score");
       return 0;
     }
-    /* METHOD OVERLOADING CHALLNEGE */
-    public static double calcFeetAndInchesToCentimeters(double feet, double inches) {
-      if (feet >= 0 && inches >= 0 && inches <= 11) {
+    /* METHOD OVERLOADING CHALLENGE */
+    public static double calcFtAndInToCm(double feet, double inches) {
+      if (feet > 0 && inches > 0 && inches < 12) {
         // 1in = 2.54cm
-        double ftToIn = feet * 12;
-        double totalIn = ftToIn + inches;
-        double inToCm = totalIn * 2.54;
-        return inToCm;
+        double totalIn = (feet * 12) + inches;
+        double intoCm = totalIn * 2.54;
+        System.out.println(feet + "ft, " + inches + "in is: " + intoCm + "cm");
+        return intoCm;
       }
+      System.out.println("[error] (calcFtAndInToCm) submitted numbers must fulfill the below requirements: \n" +
+          "feet >= 0 \n" +
+          "0 <= inches <= 12 \n" +
+          "please try again 🙏🏽");
       return -1;
     }
 
-  public static double calcFeetAndInchesToCentimeters(double inches) {
+  public static double calcFtAndInToCm(double inches) {
     if (inches >= 0) {
       // 1in = 2.54cm
-      double inToFt = inches / 12;
-      return inToFt;
+      double intoFt = (int) inches / 12;
+      double intoIn = (int) inches % 12;
+
+      System.out.println(inches + "in is: " + intoFt + "ft " + intoIn + "in");
+      return calcFtAndInToCm(intoFt, intoIn);
     }
+    System.out.println("[error] (calcFtAndInToCm) submit a number where, inches > 0 \n" +
+        "please try again 🙏🏽");
     return -1;
   }
 }
