@@ -70,6 +70,7 @@ public class Main {
 //            int finalScore = newScore + (level * newBonus);
 //            System.out.println("[CHALLENGE] your second final score is: " + finalScore);
 //        }
+
     /* CHALLENGE: METHODS */
         // 1. Create a method called displayHighScorePosition
         // 2. it should have a players name as a parameter, and a 2nd parameter as a position in the high score table
@@ -106,7 +107,32 @@ public class Main {
         String player4Name = "player4";
         position = calculateHighScorePosition(player4);
         displayHighScorePosition(player4Name, position);
+
+    /* METHOD OVERLOADING */
+    int scoreResult = calculatePlayerScore("Max", 600);
+    System.out.println("the new score is " + scoreResult);
+    calculatePlayerScore(75);
+    calculatePlayerScore();
+
+    /* CHALLENGE: METHOD OVERLOADING */
+    // 1. create a method called calcFeetAndInchesToCentimeters
+      // it needs 2 parameters: feet & inches
+    // 2. validate the parameter as follows:
+      // feet >= 0 && 0 <= inches <= 12
+    // 3. return -1 if either parameter is not validated
+    // 4. if the params are valid then calc & return the number of cm
+    // 5. create a second method of the same name w/only a single param -> inches
+    // 6. validate that inches >= 0 && return -1 if unvalidated
+    // 7. if validated then convert the inches param -> feet
+    // 8. call the other overloaded method passing the correct feet & inches
+    // hints:
+      // use double for all the numbers
+      // 1in = 2.54cm
+
+      System.out.println("you are " + calcFeetAndInchesToCentimeters(5, 11) + " cm tall");
+      System.out.println("you are " + calcFeetAndInchesToCentimeters(71) + " ft tall");
     }
+
     /* METHODS */
     // calculateScore method below
     // void keyword -> don't send any value back
@@ -138,4 +164,40 @@ public class Main {
           return 4;
         }
     }
+
+    /* METHOD OVERLOADING */
+    public static int calculatePlayerScore(String playerName, int newPlayerScore) {
+      System.out.println("player " + playerName + " scored " + newPlayerScore+ " points");
+      return newPlayerScore * 10;
+    }
+
+    public static int calculatePlayerScore(int newPlayerScore) {
+      System.out.println("unnamed player scored " + newPlayerScore+ " points");
+      return newPlayerScore * 1000;
+    }
+
+    public static int calculatePlayerScore() {
+      System.out.println("no player name, no player score");
+      return 0;
+    }
+    /* METHOD OVERLOADING CHALLNEGE */
+    public static double calcFeetAndInchesToCentimeters(double feet, double inches) {
+      if (feet >= 0 && inches >= 0 && inches <= 11) {
+        // 1in = 2.54cm
+        double ftToIn = feet * 12;
+        double totalIn = ftToIn + inches;
+        double inToCm = totalIn * 2.54;
+        return inToCm;
+      }
+      return -1;
+    }
+
+  public static double calcFeetAndInchesToCentimeters(double inches) {
+    if (inches >= 0) {
+      // 1in = 2.54cm
+      double inToFt = inches / 12;
+      return inToFt;
+    }
+    return -1;
+  }
 }
